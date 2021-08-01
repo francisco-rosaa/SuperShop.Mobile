@@ -17,7 +17,7 @@
             <SearchBar
                 Placeholder="Search product..."
                 SearchCommand="{Binding SearchCommand}"
-                Text="{Binding Search}"/>
+                Text="{Binding Search}" />
             <CollectionView ItemsSource="{Binding Products}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" />
@@ -29,9 +29,9 @@
                                 <TapGestureRecognizer Command="{Binding SelectProductCommand}" />
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1.5*" />
                                 <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
                             <ffimageloading:CachedImage
                                 Grid.Column="0"

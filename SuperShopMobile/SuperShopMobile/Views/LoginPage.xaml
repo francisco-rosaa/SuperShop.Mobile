@@ -9,23 +9,23 @@
 
     <StackLayout
         Padding="10">
-        <Label Text="Email"/>
+        <Label Text="Email" />
         <Entry
             Keyboard="Email"
             Placeholder="Enter email"
-            Text="{Binding Email}"/>
-        <Label Text="Password"/>
+            Text="{Binding Email}" />
+        <Label Text="Password" />
         <Entry
             IsPassword="True"
             Placeholder="Enter password"
-            Text="{Binding Password}"/>
+            Text="{Binding Password}" />
         <ActivityIndicator
             IsRunning="{Binding IsRunning}"
-            VerticalOptions="CenterAndExpand"/>
+            VerticalOptions="CenterAndExpand" />
         <Button
             Command="{Binding LoginCommand}"
             IsEnabled="{Binding IsEnabled}"
-            Text="Login"/>
+            Text="Login" />
     </StackLayout>
 
 </ContentPage>

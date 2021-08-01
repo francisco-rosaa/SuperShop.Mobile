@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Commands;
 using Prism.Navigation;
-using SuperShopMobile.Models;
-using SuperShopMobile.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using SuperShopMobile.ItemViewModels;
+using SuperShopMobile.Models;
+using SuperShopMobile.Services;
 
 namespace SuperShopMobile.ViewModels
 {
@@ -16,7 +16,7 @@ namespace SuperShopMobile.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
 
-        private ObservableCollection<ProductResponse> _products;
+        private ObservableCollection<ProductItemViewModel> _products;
         private List<ProductResponse> _myProducts;
         private bool _isRunning;
         private string _search;
@@ -32,7 +32,7 @@ namespace SuperShopMobile.ViewModels
             LoadProductsAsync();
         }
 
-        public ObservableCollection<ProductResponse> Products
+        public ObservableCollection<ProductItemViewModel> Products
         {
             get => _products;
             set => SetProperty(ref _products, value);
@@ -94,15 +94,41 @@ namespace SuperShopMobile.ViewModels
         {
             if (string.IsNullOrEmpty(Search))
             {
-                Products = new ObservableCollection
-                    <ProductResponse>(_myProducts);
+                Products = new ObservableCollection<ProductItemViewModel>
+                    (_myProducts.Select(x => new ProductItemViewModel(_navigationService)
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Price = x.Price,
+                        ImageUrl = x.ImageUrl,
+                        LastPurchase = x.LastPurchase,
+                        LastSale = x.LastSale,
+                        IsAvailable = x.IsAvailable,
+                        Stock = x.Stock,
+                        User = x.User,
+                        ImageFullPath = x.ImageFullPath
+                    })
+                    .ToList());
             }
             else
             {
-                Products = new ObservableCollection
-                    <ProductResponse>(_myProducts.Where(x => x.Name.ToLower().Contains(Search.ToLower())));
+                Products = new ObservableCollection<ProductItemViewModel>
+                    (_myProducts.Select(x => new ProductItemViewModel(_navigationService)
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Price = x.Price,
+                        ImageUrl = x.ImageUrl,
+                        LastPurchase = x.LastPurchase,
+                        LastSale = x.LastSale,
+                        IsAvailable = x.IsAvailable,
+                        Stock = x.Stock,
+                        User = x.User,
+                        ImageFullPath = x.ImageFullPath
+                    })
+                    .Where(x => x.Name.ToLower().Contains(Search.ToLower()))
+                    .ToList());
             }
         }
-
     }
 }
