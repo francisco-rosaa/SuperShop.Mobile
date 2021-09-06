@@ -8,6 +8,7 @@
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:i18n="clr-namespace:SuperShopMobile.Helpers"
     Title="{Binding Title}"
+    BackgroundColor="{StaticResource ColorBackground}"
     prism:ViewModelLocator.AutowireViewModel="True">
 
     <AbsoluteLayout>
@@ -80,7 +81,7 @@
             AnimationType="SingleCircle"
             HorizontalOptions="Center"
             IsBusy="{Binding IsRunning}"
-            TextColor="#2196F3"
+            TextColor="{StaticResource ColorPrimary}"
             TextSize="15"
             VerticalOptions="Center"
             ViewBoxHeight="100"
