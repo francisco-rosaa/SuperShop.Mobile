@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using SuperShopMobile.ItemViewModels;
 using SuperShopMobile.Models;
 using SuperShopMobile.Services;
+using SuperShopMobile.Helpers;
 
 namespace SuperShopMobile.ViewModels
 {
@@ -28,7 +29,7 @@ namespace SuperShopMobile.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Products";
+            Title = Languages.Products;
             LoadProductsAsync();
         }
 
@@ -64,7 +65,7 @@ namespace SuperShopMobile.ViewModels
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "No Internet connection", "Accept");
+                    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 });
 
                 return;
@@ -82,7 +83,7 @@ namespace SuperShopMobile.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
