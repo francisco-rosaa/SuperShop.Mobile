@@ -1,12 +1,12 @@
 using Prism;
 using Prism.Ioc;
-using SuperShopMobile.Services;
-using SuperShopMobile.ViewModels;
-using SuperShopMobile.Views;
 using Syncfusion.Licensing;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+using SuperShopMobile.Services;
+using SuperShopMobile.ViewModels;
+using SuperShopMobile.Views;
 
 namespace SuperShopMobile
 {
@@ -23,7 +23,8 @@ namespace SuperShopMobile
             
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/ProductsPage");
+            await NavigationService.NavigateAsync
+                ($"/{nameof(SuperShopMasterDetailPage)}/NavigationPage/{nameof(ProductsPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,6 +35,10 @@ namespace SuperShopMobile
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ProductsPage, ProductsPageViewModel>();
             containerRegistry.RegisterForNavigation<ProductDetailPage, ProductDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<SuperShopMasterDetailPage, SuperShopMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<ShowHistoryPage, ShowHistoryPageViewModel>();
+            containerRegistry.RegisterForNavigation<ShowCartPage, ShowCartPageViewModel>();
         }
     }
 }
